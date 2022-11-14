@@ -9,11 +9,12 @@ class suklSpider(scrapy.Spider):
     # URL cannot be parsed properly
         
     def parse(self, response): 
-        recs = []
         for product in response.css('tr.first'):
             yield {
-                   'brand' : product.css('td  a::attr(title)').get() 
+                   'brand_pcg' : product.css('td  a::attr(title)').get() 
+                   'spc': product.css('td:nth-child(3) a::attr(href)').get()
+                   'detail': product.css('td a::attr(href)').get()
             } 
            
            
- #           next_page = response.css()
+        next_page = response.css()
