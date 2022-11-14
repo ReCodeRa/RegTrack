@@ -11,10 +11,9 @@ class suklSpider(scrapy.Spider):
     def parse(self, response): 
         recs = []
         for product in response.css('tr.first'):
-            r = yield {
-                   'brand' : product.css('[td.headers="název"]::text').get() 
-            }
-        recs.append(r) 
+            yield {
+                   'brand' : product.css('td  a::attr(title)').get() 
+            } 
            
            
  #           next_page = response.css()
